@@ -24,7 +24,7 @@ public class Inicio extends javax.swing.JFrame {
     String qCaudal_s, qProm_s,qmaximo_s, pendiente_i_s, coe_descarga_s, cota_entrega_s, barrotes_s, a_separacion_s;
     double qCaudal, qProm, qmaximo, pendiente_i, coe_descarga, cota_entrega, barrotes, a_separacion;
     double h_diseño, laterales=1, correc_laterales, v_rio, Xs, Xi, B, area_neta, v_barrotes=0.1, longi_rejilla, n_ori, profun_aguas_abajo/*he*/, profun_critica/*hc*/, 
-            profun_aguas_arriba/*ho*/, He, H0, longi_canal, bordeLibre=0.15, vel_agua_final, B_camara, H_muros;
+            profun_aguas_arriba/*ho*/, He, H0, longi_canal, bordeLibre=0.15, vel_agua_final, B_camara, H_muros, H /*modificar el nombre*/, q_captado, q_exce, H_exce, V_exce;
     
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
@@ -274,6 +274,9 @@ public class Inicio extends javax.swing.JFrame {
             qProm_s = txtQprom.getText();
             qProm = Double.parseDouble(qProm_s);
             
+            coe_descarga_s = txtCoe_descarga.getText();
+            coe_descarga = Double.parseDouble(coe_descarga_s);
+            
             /* profun lamina de agua */
             h_diseño = Math.pow((qCaudal / 1.84 * laterales), (2.0/3.0));
             System.out.println("H: " + h_diseño);
@@ -334,15 +337,27 @@ public class Inicio extends javax.swing.JFrame {
                     double Xs_2 = 0.36 * Math.pow(vel_agua_final, (2.0/3.0)) + 0.6 * Math.pow(profun_aguas_abajo, (4.0/7.0));
                     double Xi_2 = 0.18 * Math.pow(vel_agua_final,(4.0/7.0)) + 0.74 * Math.pow(profun_aguas_abajo, (3.0/4.0));
                     B_camara = Xs_2 + 0.3;
+                    B_camara = 1.5; ////////////////////////////////////////////////////////wtf/////////////////
                     System.out.println("Xs_2: " + Xs_2);
                     System.out.println("Xi_2: " + Xi_2);
                     System.out.println("B_camara: " + B_camara);
                     
                     /*ALTURA DE LOS MUROS DE CONTENCIÓN*/
                     H_muros = Math.pow((qmaximo / (1.84 * laterales)), (2.0/3.0));
-                    System.out.println("H_muros: " + H_muros);
                     H_muros = Math.ceil(H_muros);
                     System.out.println("H_muros: " + H_muros);
+                    
+                    /*CAUDAL DE EXCESOS*/
+                    H = Math.pow((qProm / 1.84 * laterales), (2.0/3.0));
+                    q_captado = coe_descarga * area_neta_3 * Math.sqrt(2 * 9.81 * H);                     
+                    q_exce = q_captado - qCaudal;
+                    System.out.println("q_exce: " + q_exce);
+                    
+                    /*CONDICIONES EN EL VERTEDERO DE EXCESOS*/
+                    H_exce = Math.pow((q_exce / (1.84 * B_camara)),(2.0/3.0));
+                    V_exce = q_exce / (H_exce * B_camara);
+                    double e_Xs_esos = 0.36 * Math.pow(V_exce, (2.0/3.0)) + 0.6 * Math.pow(H_exce, (4.0/7.0)); 
+                    System.out.println("e_Xs_esos: " + e_Xs_esos);
                 }else{
                     JOptionPane.showMessageDialog(null,"Velocidad del agua al final del canal inferior o superior a la esperada.");
                 }
