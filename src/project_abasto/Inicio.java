@@ -22,8 +22,8 @@ public class Inicio extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);       
     }
     /*Datos de entrada*/
-    String qCaudal_s, qProm_s,qmaximo_s, pendiente_i_s, coe_descarga_s, cota_entrega_s, barrotes_s, a_separacion_s;
-    double qCaudal, qProm, qmaximo, pendiente_i, coe_descarga, cota_entrega, barrotes, a_separacion;
+    String qCaudal_s, qProm_s,qmaximo_s, pendiente_i_s, coe_descarga_s, cota_entrega_s, barrotes_s, a_separacion_s, fondoRio_s;
+    double qCaudal, qProm, qmaximo, pendiente_i, coe_descarga, cota_entrega, barrotes, a_separacion, fondoRio;
     /*DATOS*/
     double h_diseño, laterales=1, correc_laterales, v_rio, Xs, Xi, B, area_neta, v_barrotes=0.1, longi_rejilla, n_ori, profun_aguas_abajo/*he*/, profun_critica/*hc*/, 
             profun_aguas_arriba/*ho*/, He, H0, longi_canal, bordeLibre=0.15, vel_agua_final, B_camara, h_muros, H /*modificar el nombre*/, q_captado, q_exce, H_exce, V_exce;
@@ -75,6 +75,12 @@ public class Inicio extends javax.swing.JFrame {
         txtQmax = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        txtFondoRio = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,9 +105,50 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        txtPendiente_i.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPendiente_iKeyTyped(evt);
+            }
+        });
+
+        txtQprom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtQpromKeyTyped(evt);
+            }
+        });
+
+        txtQ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQActionPerformed(evt);
+            }
+        });
+        txtQ.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtQKeyTyped(evt);
+            }
+        });
+
+        txtCoe_descarga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCoe_descargaKeyTyped(evt);
+            }
+        });
+
+        txtCota_entrega.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCota_entregaKeyTyped(evt);
+            }
+        });
+
         jLabel8.setText("Tamaño de barrotes:");
 
         jLabel9.setText("Separación entre barrotes:");
+
+        txtSeparacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSeparacionKeyTyped(evt);
+            }
+        });
 
         cmbTamaBarrotes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1/2\"" }));
         cmbTamaBarrotes.addActionListener(new java.awt.event.ActionListener() {
@@ -118,9 +165,29 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel13.setText("Caudal maximo (Qmax):");
 
+        txtQmax.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtQmaxKeyTyped(evt);
+            }
+        });
+
         jLabel14.setText("m3/s");
 
         jLabel15.setText("m3/s");
+
+        jLabel16.setText("Fondo del rio en la captación:");
+
+        txtFondoRio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFondoRioKeyTyped(evt);
+            }
+        });
+
+        jLabel17.setText("m.");
+
+        jLabel18.setText("Fecha:");
+
+        jLabel19.setText("m.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -138,46 +205,62 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel13))
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel16))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(cmbTamaBarrotes, javax.swing.GroupLayout.Alignment.LEADING, 0, 84, Short.MAX_VALUE)
-                                .addComponent(txtCota_entrega))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtFondoRio, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel17)
+                                .addGap(158, 158, 158)
+                                .addComponent(jButton1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtCoe_descarga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                                    .addComponent(txtPendiente_i, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtQprom, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtQ, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtQmax))
+                                    .addComponent(cmbTamaBarrotes, javax.swing.GroupLayout.Alignment.LEADING, 0, 84, Short.MAX_VALUE)
+                                    .addComponent(txtCota_entrega))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel15)))
+                                .addComponent(jLabel19))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtSeparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10)
-                                .addGap(145, 145, 145)
-                                .addComponent(jButton1)))))
-                .addContainerGap(900, Short.MAX_VALUE))
+                                .addComponent(jLabel10))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel18)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtCoe_descarga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                            .addComponent(txtPendiente_i, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtQprom, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtQ, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtQmax))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel12)
+                                            .addComponent(jLabel14)
+                                            .addComponent(jLabel15))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel2))
+                .addContainerGap(894, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel18))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -200,7 +283,6 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtSeparacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)
                         .addComponent(jLabel10))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -214,7 +296,8 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(txtCota_entrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCota_entrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
@@ -222,7 +305,12 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addGap(6, 6, 6)))
-                .addContainerGap(425, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(txtFondoRio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17)
+                    .addComponent(jButton1))
+                .addContainerGap(403, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel1);
@@ -252,6 +340,12 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Introduzca el valor del caudal maximo.");
         }else if(txtQprom.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Introduzca el valor del caudal promedio.");
+        }else if(txtCoe_descarga.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Introduzca el valor del coeficiente de descarga.");
+        }else if(txtCota_entrega.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Introduzca el valor de la Cota de entrega.");
+        }else if(txtFondoRio.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Introduzca el valor del fondo del río.");
         }else{
             qCaudal_s= txtQ.getText();
             qCaudal = Double.parseDouble(qCaudal_s);
@@ -284,6 +378,9 @@ public class Inicio extends javax.swing.JFrame {
             cota_entrega_s = txtCota_entrega.getText();
             cota_entrega = Double.parseDouble(cota_entrega_s);
             
+            fondoRio_s = txtFondoRio.getText();
+            fondoRio = Double.parseDouble(fondoRio_s);
+            
             /* profun lamina de agua */
             h_diseño = Math.pow((qCaudal / 1.84 * laterales), (2.0/3.0));
             System.out.println("H: " + h_diseño);
@@ -313,7 +410,7 @@ public class Inicio extends javax.swing.JFrame {
                 }   
                 
                 /*Recalcular area neta*/               
-                double area_neta_2 = (a_separacion / (a_separacion+barrotes/*esta variable no es la correcta*/)) * B_ceil * longi_rejilla; //posible error en la var barrotes
+                double area_neta_2 = (a_separacion / (a_separacion+barrotes)) * B_ceil * longi_rejilla; //posible error en la var barrotes
                 n_ori = area_neta_2 / (a_separacion*B_ceil);
                 n_ori = Math.ceil(n_ori);
                 System.out.println("numero de orificios: " + n_ori);
@@ -344,7 +441,9 @@ public class Inicio extends javax.swing.JFrame {
                     double Xs_2 = 0.36 * Math.pow(vel_agua_final, (2.0/3.0)) + 0.6 * Math.pow(profun_aguas_abajo, (4.0/7.0));
                     double Xi_2 = 0.18 * Math.pow(vel_agua_final,(4.0/7.0)) + 0.74 * Math.pow(profun_aguas_abajo, (3.0/4.0));
                     B_camara = Xs_2 + 0.3;
-                    B_camara = 1.5; ////////////////////////////////////////////////////////en base a que cambia a 1.5??/////////////////
+                    if(B_camara<1.5){
+                        B_camara = 1.5;
+                    }
                     System.out.println("Xs_2: " + Xs_2);
                     System.out.println("Xi_2: " + Xi_2);
                     System.out.println("B_camara: " + B_camara);
@@ -368,19 +467,19 @@ public class Inicio extends javax.swing.JFrame {
                     
                     /*CALCULO DE COTAS*/
                     /*lamina sobre la presa*/
-                    diseño = 100 + h_diseño;
-                    maxima =100 + h_muros;
-                    promedio =100 + H;
+                    diseño = fondoRio + h_diseño;
+                    maxima = fondoRio + h_muros;
+                    promedio = fondoRio + H;
                     /*Corona de los muros de contención*/ /*FALTA UNA VARIABLE?*/
                     //corona_muros_contencion = 100 + ;
                     /*Canal de aducción*/
-                    fondo_aguas_arriba = 100 - H0;
-                    fondo_aguas_abajo = 100 - He;
-                    lamina_aguas_arriba = (100 - H0) + profun_aguas_arriba;
-                    lamina_aguas_abajo = (100 - He) + profun_aguas_abajo;
+                    fondo_aguas_arriba = fondoRio - H0;
+                    fondo_aguas_abajo = fondoRio - He;
+                    lamina_aguas_arriba = (fondoRio - H0) + profun_aguas_arriba;
+                    lamina_aguas_abajo = (fondoRio - He) + profun_aguas_abajo;
                     /*Camara de recolección*/
-                    Cresta_vertedero_excesos = 100 - He - bordeLibre;
-                    fondo = 100 - He - bordeLibre - 0.6;
+                    Cresta_vertedero_excesos = fondoRio - He - bordeLibre;
+                    fondo = fondoRio - He - bordeLibre - 0.6;
                     /*Tuberia de excesos*/
                     cota_entrada = fondo;
                     cota_salida = cota_entrega + coe_descarga/*es esta variablñe correcta?*/;
@@ -406,6 +505,88 @@ public class Inicio extends javax.swing.JFrame {
     private void cmbTamaBarrotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTamaBarrotesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbTamaBarrotesActionPerformed
+
+    private void txtQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQActionPerformed
+    }//GEN-LAST:event_txtQActionPerformed
+
+    private void txtQKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQKeyTyped
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+    }//GEN-LAST:event_txtQKeyTyped
+
+    private void txtQpromKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQpromKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+    }//GEN-LAST:event_txtQpromKeyTyped
+
+    private void txtQmaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQmaxKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+    }//GEN-LAST:event_txtQmaxKeyTyped
+
+    private void txtPendiente_iKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPendiente_iKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+    }//GEN-LAST:event_txtPendiente_iKeyTyped
+
+    private void txtCoe_descargaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCoe_descargaKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+    }//GEN-LAST:event_txtCoe_descargaKeyTyped
+
+    private void txtCota_entregaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCota_entregaKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+    }//GEN-LAST:event_txtCota_entregaKeyTyped
+
+    private void txtSeparacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSeparacionKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+    }//GEN-LAST:event_txtSeparacionKeyTyped
+
+    private void txtFondoRioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFondoRioKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+    }//GEN-LAST:event_txtFondoRioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -445,6 +626,7 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbTamaBarrotes;
     private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -452,6 +634,10 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -464,6 +650,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtCoe_descarga;
     private javax.swing.JTextField txtCota_entrega;
+    private javax.swing.JTextField txtFondoRio;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPendiente_i;
     private javax.swing.JTextField txtQ;
