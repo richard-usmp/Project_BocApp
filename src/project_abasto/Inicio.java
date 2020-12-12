@@ -5,6 +5,7 @@
  */
 package project_abasto;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +20,12 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         initComponents();
         this.setTitle("BocApp");
-        this.setLocationRelativeTo(null);       
+        this.setLocationRelativeTo(null);
+//        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg1, "src/imagenes/Plano 1.png");
+//        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg2, "src/imagenes/Plano 2.png");
+//        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg3, "src/imagenes/Plano 3.png");
+//        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg4, "src/imagenes/Plano 4.png");
+//        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg5, "src/imagenes/Plano 5.png");
     }
     /*Datos de entrada*/
     String qCaudal_s, qProm_s,qmaximo_s, pendiente_i_s, coe_descarga_s, cota_entrega_s, barrotes_s, a_separacion_s, fondoRio_s;
@@ -27,8 +33,9 @@ public class Inicio extends javax.swing.JFrame {
     /*DATOS*/
     double h_diseño, laterales=1, correc_laterales, v_rio, Xs, Xi, B, area_neta, v_barrotes=0.1, longi_rejilla, n_ori, profun_aguas_abajo/*he*/, profun_critica/*hc*/, 
             profun_aguas_arriba/*ho*/, He, H0, longi_canal, bordeLibre=0.15, vel_agua_final, B_camara, h_muros, H /*modificar el nombre*/, q_captado, q_exce, H_exce, V_exce;
-    /*CALCULO DE COTAS*/
-    double diseño, maxima, promedio, corona_muros_contencion, fondo_aguas_arriba, fondo_aguas_abajo, lamina_aguas_arriba, lamina_aguas_abajo, Cresta_vertedero_excesos, fondo, cota_entrada, cota_salida;
+    /*CALCULO DE COTAS*/    
+    double diseño, maxima, promedio, corona_muros_contencion, fondo_aguas_arriba, fondo_aguas_abajo, lamina_aguas_arriba, lamina_aguas_abajo, Cresta_vertedero_excesos, fondo, cota_entrada, 
+            cota_salida;
     
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
@@ -81,22 +88,41 @@ public class Inicio extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        lblDato2 = new javax.swing.JLabel();
+        lblDato1 = new javax.swing.JLabel();
+        lblImg1 = new javax.swing.JLabel();
+        lblImg2 = new javax.swing.JLabel();
+        lblImg3 = new javax.swing.JLabel();
+        lblImg4 = new javax.swing.JLabel();
+        lblImg5 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 4300));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setText("Nombre:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 10, -1, -1));
 
         jLabel6.setText("Coeficiente de descarga (Cd):");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 209, -1, -1));
 
         jLabel7.setText("Cota del río en la entrega:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 239, -1, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 6, 120, -1));
 
         jLabel2.setText("Datos:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 65, -1, -1));
 
         jLabel3.setText("Caudal (Q):");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 87, -1, -1));
 
         jLabel4.setText("Caudal promedio (Qprom):");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 113, -1, -1));
 
         jLabel5.setText("Pendiente del fondo del canal (i):");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 179, -1, -1));
 
         jButton1.setText("Calcular");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -104,18 +130,21 @@ public class Inicio extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 381, -1, -1));
 
         txtPendiente_i.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPendiente_iKeyTyped(evt);
             }
         });
+        jPanel1.add(txtPendiente_i, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 175, 84, -1));
 
         txtQprom.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtQpromKeyTyped(evt);
             }
         });
+        jPanel1.add(txtQprom, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 109, 84, -1));
 
         txtQ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,28 +156,34 @@ public class Inicio extends javax.swing.JFrame {
                 txtQKeyTyped(evt);
             }
         });
+        jPanel1.add(txtQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 79, 84, -1));
 
         txtCoe_descarga.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCoe_descargaKeyTyped(evt);
             }
         });
+        jPanel1.add(txtCoe_descarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 205, 84, -1));
 
         txtCota_entrega.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCota_entregaKeyTyped(evt);
             }
         });
+        jPanel1.add(txtCota_entrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 235, 84, -1));
 
         jLabel8.setText("Tamaño de barrotes:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 270, -1, -1));
 
         jLabel9.setText("Separación entre barrotes:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 307, -1, -1));
 
         txtSeparacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtSeparacionKeyTyped(evt);
             }
         });
+        jPanel1.add(txtSeparacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 303, 84, -1));
 
         cmbTamaBarrotes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1/2\"" }));
         cmbTamaBarrotes.addActionListener(new java.awt.event.ActionListener() {
@@ -156,162 +191,80 @@ public class Inicio extends javax.swing.JFrame {
                 cmbTamaBarrotesActionPerformed(evt);
             }
         });
+        jPanel1.add(cmbTamaBarrotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 265, 84, -1));
 
         jLabel10.setText("cm.");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 307, -1, -1));
 
         jLabel11.setText("L/s");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 83, -1, -1));
 
         jLabel12.setText("%");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 179, -1, -1));
 
         jLabel13.setText("Caudal maximo (Qmax):");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 143, -1, -1));
 
         txtQmax.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtQmaxKeyTyped(evt);
             }
         });
+        jPanel1.add(txtQmax, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 139, 84, -1));
 
         jLabel14.setText("m3/s");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 113, -1, -1));
 
         jLabel15.setText("m3/s");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 143, -1, -1));
 
         jLabel16.setText("Fondo del rio en la captación:");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 343, -1, -1));
 
         txtFondoRio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtFondoRioKeyTyped(evt);
             }
         });
+        jPanel1.add(txtFondoRio, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 339, 84, -1));
 
         jLabel17.setText("m.");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 343, -1, -1));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 6, -1, -1));
 
         jLabel18.setText("Fecha:");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 10, -1, -1));
 
         jLabel19.setText("m.");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 239, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel16))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtFondoRio, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel17)
-                                .addGap(158, 158, 158)
-                                .addComponent(jButton1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cmbTamaBarrotes, javax.swing.GroupLayout.Alignment.LEADING, 0, 84, Short.MAX_VALUE)
-                                    .addComponent(txtCota_entrega))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel19))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtSeparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel18)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txtCoe_descarga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                                            .addComponent(txtPendiente_i, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtQprom, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtQ, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtQmax))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jLabel14)
-                                            .addComponent(jLabel15))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel2))
-                .addContainerGap(894, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel18))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtQprom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtQmax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtSeparacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtPendiente_i, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtCoe_descarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtCota_entrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(cmbTamaBarrotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)
-                        .addGap(6, 6, 6)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(txtFondoRio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17)
-                    .addComponent(jButton1))
-                .addContainerGap(403, Short.MAX_VALUE))
-        );
+        lblDato2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(lblDato2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 650, 40, 30));
+        jPanel1.add(lblDato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 710, 40, 20));
+
+        lblImg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 1.png"))); // NOI18N
+        lblImg1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblImg1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 1260, 720));
+
+        lblImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 2.png"))); // NOI18N
+        lblImg2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblImg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1190, 1260, 720));
+
+        lblImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 3.png"))); // NOI18N
+        lblImg3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblImg3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1930, 1260, 720));
+
+        lblImg4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 4.png"))); // NOI18N
+        lblImg4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblImg4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 2670, 1260, 720));
+
+        lblImg5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 5.png"))); // NOI18N
+        lblImg5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lblImg5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 3410, 1260, 720));
+
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton2.setText("Generar PDF");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1047, 4190, 180, 50));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -319,11 +272,13 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 4294, Short.MAX_VALUE))
         );
 
         pack();
@@ -489,7 +444,11 @@ public class Inicio extends javax.swing.JFrame {
                     double d = Math.pow((q_exce / (0.2785 * /*C*/100 * Math.pow(j, 0.54))),(1.0/2.63)); //que es C?? por ahora es 100
                     d = d * 39.3701;
                     System.out.println("d\":" + d);
-
+                    
+                    
+                    /*PONER DATOS EN LA IMAGEN*/
+                    lblDato1.setText(d+"");
+                    lblDato2.setText(cota_salida+"");
                 }else{
                     JOptionPane.showMessageDialog(null,"Velocidad del agua al final del canal inferior o superior a la esperada.");
                 }
@@ -497,9 +456,7 @@ public class Inicio extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Velocidad del rio inferior o superior a la esperada.");
             }
             
-        }
-        
-        
+        }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cmbTamaBarrotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTamaBarrotesActionPerformed
@@ -626,6 +583,7 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbTamaBarrotes;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -648,6 +606,13 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblDato1;
+    private javax.swing.JLabel lblDato2;
+    private javax.swing.JLabel lblImg1;
+    private javax.swing.JLabel lblImg2;
+    private javax.swing.JLabel lblImg3;
+    private javax.swing.JLabel lblImg4;
+    private javax.swing.JLabel lblImg5;
     private javax.swing.JTextField txtCoe_descarga;
     private javax.swing.JTextField txtCota_entrega;
     private javax.swing.JTextField txtFondoRio;
