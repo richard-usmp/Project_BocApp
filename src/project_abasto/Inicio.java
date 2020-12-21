@@ -6,7 +6,10 @@
 package project_abasto;
 
 import java.awt.Color;
-import javax.swing.JLabel;
+import java.awt.Image;
+import java.net.URL;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,7 +26,8 @@ public class Inicio extends javax.swing.JFrame {
         this.setTitle("BocApp");
         this.setLocationRelativeTo(null);
         lbl_pendiente_i.setOpaque(true);
-        lbl_blanco.setOpaque(true);
+        lbl_fondo_aguas_arriba_3.setOpaque(true);
+        
 //        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg1, "src/imagenes/Plano 1.png");
 //        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg2, "src/imagenes/Plano 2.png");
 //        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg3, "src/imagenes/Plano 3.png");
@@ -132,8 +136,7 @@ public class Inicio extends javax.swing.JFrame {
         lbl_He = new javax.swing.JLabel();
         lbl_profun_aguas_abajo = new javax.swing.JLabel();
         lbl_fondo_aguas_abajo_3 = new javax.swing.JLabel();
-        lbl_blanco = new javax.swing.JLabel();
-        txtL = new javax.swing.JLabel();
+        lblL = new javax.swing.JLabel();
         lblImg1 = new javax.swing.JLabel();
         lblImg2 = new javax.swing.JLabel();
         lblImg3 = new javax.swing.JLabel();
@@ -141,11 +144,11 @@ public class Inicio extends javax.swing.JFrame {
         lblImg5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 2231));
+        setPreferredSize(new java.awt.Dimension(1310, 720));
 
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(1280, 4703));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(1280, 730));
 
-        jPanel1.setMinimumSize(new java.awt.Dimension(1260, 4500));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 4700));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -241,7 +244,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel1.add(txtSeparacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 84, -1));
 
-        cmbTamaBarrotes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1/2\"", "1/4\"", "1\"" }));
+        cmbTamaBarrotes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1/2\"", "3/4\"", "1\"" }));
         cmbTamaBarrotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbTamaBarrotesActionPerformed(evt);
@@ -302,238 +305,196 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 4570, 180, 50));
 
         jLabel20.setText("1.00");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 1370, 30, 30));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 1440, 30, 30));
 
         lbl_maxima.setForeground(new java.awt.Color(255, 0, 0));
         lbl_maxima.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_maxima.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(lbl_maxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 2200, 50, 20));
 
         lbl_lamina_aguas_abajo.setForeground(new java.awt.Color(255, 0, 0));
         lbl_lamina_aguas_abajo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_lamina_aguas_abajo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_lamina_aguas_abajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 2430, 50, 20));
+        jPanel1.add(lbl_lamina_aguas_abajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 2440, 50, 20));
 
         lbl_diseño.setForeground(new java.awt.Color(255, 0, 0));
         lbl_diseño.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_diseño.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(lbl_diseño, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 2320, 50, 30));
 
         lbl_fondoRio_s_2.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondoRio_s_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondoRio_s_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(lbl_fondoRio_s_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 2370, 50, 20));
 
         lbl_fondo_aguas_arriba_2.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondo_aguas_arriba_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondo_aguas_arriba_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondo_aguas_arriba_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 2400, 40, 20));
+        jPanel1.add(lbl_fondo_aguas_arriba_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 2410, 40, 20));
 
         lbl_promedio.setForeground(new java.awt.Color(255, 0, 0));
         lbl_promedio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_promedio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(lbl_promedio, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 2270, 50, 30));
 
         lbl_corona_muros_contencion_2.setForeground(new java.awt.Color(255, 0, 0));
         lbl_corona_muros_contencion_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_corona_muros_contencion_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(lbl_corona_muros_contencion_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 2160, 50, 20));
 
         lbl_lamina_aguas_arriba.setForeground(new java.awt.Color(255, 0, 0));
         lbl_lamina_aguas_arriba.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_lamina_aguas_arriba.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_lamina_aguas_arriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 2460, 50, 20));
+        jPanel1.add(lbl_lamina_aguas_arriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 2470, 50, 20));
 
         lbl_fondo_2.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondo_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondo_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondo_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 2560, 50, 20));
+        jPanel1.add(lbl_fondo_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 2570, 50, 20));
 
         lbl_fondo_aguas_abajo.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondo_aguas_abajo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondo_aguas_abajo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondo_aguas_abajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 2440, 50, 20));
+        jPanel1.add(lbl_fondo_aguas_abajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 2450, 50, 20));
 
         lbl_fondo.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 1810, 50, 20));
+        jPanel1.add(lbl_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 1810, 50, 20));
 
         lbl_fondo_aguas_arriba.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondo_aguas_arriba.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondo_aguas_arriba.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondo_aguas_arriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 1660, 50, 20));
+        jPanel1.add(lbl_fondo_aguas_arriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 1660, 50, 20));
 
         lbl_fondoRio_s.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondoRio_s.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondoRio_s.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondoRio_s, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1550, 40, 20));
+        jPanel1.add(lbl_fondoRio_s, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 1550, 40, 20));
 
         lbl_corona_muros_contencion.setForeground(new java.awt.Color(255, 0, 0));
         lbl_corona_muros_contencion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_corona_muros_contencion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_corona_muros_contencion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 1330, 50, 30));
+        jPanel1.add(lbl_corona_muros_contencion, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 1330, 50, 30));
 
         lbl_lamina_aguas_arriba_2.setForeground(new java.awt.Color(255, 0, 0));
         lbl_lamina_aguas_arriba_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_lamina_aguas_arriba_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_lamina_aguas_arriba_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 3220, 50, 30));
+        jPanel1.add(lbl_lamina_aguas_arriba_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 3220, 50, 30));
 
         lbl_fondoRio_s_3.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondoRio_s_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondoRio_s_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondoRio_s_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 3050, 50, 20));
+        jPanel1.add(lbl_fondoRio_s_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 3060, 50, 20));
 
         lbl_lamina_aguas_abajo_2.setForeground(new java.awt.Color(255, 0, 0));
         lbl_lamina_aguas_abajo_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_lamina_aguas_abajo_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_lamina_aguas_abajo_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 3270, 50, 20));
+        jPanel1.add(lbl_lamina_aguas_abajo_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 3270, 50, 20));
 
         lbl_fondo_3.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondo_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondo_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondo_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 3400, 50, 30));
+        jPanel1.add(lbl_fondo_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 3400, 50, 30));
 
         lbl_fondo_aguas_abajo_2.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondo_aguas_abajo_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondo_aguas_abajo_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondo_aguas_abajo_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 3160, 50, 30));
+        jPanel1.add(lbl_fondo_aguas_abajo_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 3160, 50, 30));
 
         lblTam_barro.setBackground(new java.awt.Color(0, 0, 0));
         lblTam_barro.setForeground(new java.awt.Color(255, 0, 0));
         lblTam_barro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTam_barro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lblTam_barro, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 740, 30, 20));
+        jPanel1.add(lblTam_barro, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 750, 30, 20));
 
         lbl_N.setBackground(new java.awt.Color(0, 0, 0));
         lbl_N.setForeground(new java.awt.Color(255, 0, 0));
         lbl_N.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_N.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_N, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 740, 40, 20));
+        jPanel1.add(lbl_N, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 760, 40, 20));
 
         lblLr.setBackground(new java.awt.Color(0, 0, 0));
         lblLr.setForeground(new java.awt.Color(255, 0, 0));
         lblLr.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lblLr, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 760, 40, 30));
+        jPanel1.add(lblLr, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 770, 40, 30));
 
         lbl_B.setBackground(new java.awt.Color(0, 0, 0));
         lbl_B.setForeground(new java.awt.Color(255, 0, 0));
         lbl_B.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_B.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_B, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 690, 40, 20));
+        jPanel1.add(lbl_B, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 700, 40, 20));
 
         lbl_d.setForeground(new java.awt.Color(255, 0, 0));
         lbl_d.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_d.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_d, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 930, 40, 20));
+        jPanel1.add(lbl_d, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 950, 40, 20));
 
         lbl_bordeLibre.setForeground(new java.awt.Color(255, 0, 0));
         lbl_bordeLibre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_bordeLibre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_bordeLibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 3900, 40, 20));
+        jPanel1.add(lbl_bordeLibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 3910, 40, 20));
 
         lbl_profun_aguas_arriba.setForeground(new java.awt.Color(255, 0, 0));
         lbl_profun_aguas_arriba.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_profun_aguas_arriba.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_profun_aguas_arriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 4000, 40, 20));
+        jPanel1.add(lbl_profun_aguas_arriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 4010, 40, 20));
 
         lbl_H0.setForeground(new java.awt.Color(255, 0, 0));
         lbl_H0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_H0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_H0, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 3960, 40, 20));
+        jPanel1.add(lbl_H0, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 3970, 40, 20));
 
+        lbl_fondo_aguas_arriba_3.setBackground(new java.awt.Color(255, 255, 255));
         lbl_fondo_aguas_arriba_3.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondo_aguas_arriba_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondo_aguas_arriba_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondo_aguas_arriba_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 4040, 40, 20));
+        jPanel1.add(lbl_fondo_aguas_arriba_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 4050, 40, 20));
 
         lbl_fondoRio_s_4.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondoRio_s_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondoRio_s_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondoRio_s_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 3830, 40, 20));
+        jPanel1.add(lbl_fondoRio_s_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 3840, 40, 20));
 
         lbl_pendiente_i.setBackground(Color.WHITE);
         lbl_pendiente_i.setForeground(new java.awt.Color(255, 0, 0));
         lbl_pendiente_i.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_pendiente_i.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_pendiente_i, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 4120, 40, 20));
+        jPanel1.add(lbl_pendiente_i, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 4130, 40, 20));
 
         lbl_correc_laterales.setForeground(new java.awt.Color(255, 0, 0));
         lbl_correc_laterales.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_correc_laterales.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_correc_laterales, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 3790, 40, 20));
+        jPanel1.add(lbl_correc_laterales, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 3800, 40, 20));
 
         lbl_correc_laterales1.setForeground(new java.awt.Color(255, 0, 0));
         lbl_correc_laterales1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_correc_laterales1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_correc_laterales1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 4180, 40, 20));
+        jPanel1.add(lbl_correc_laterales1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 4190, 40, 20));
 
         lbl_bordeLibre_2.setForeground(new java.awt.Color(255, 0, 0));
         lbl_bordeLibre_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_bordeLibre_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_bordeLibre_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 3900, 40, 20));
+        jPanel1.add(lbl_bordeLibre_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 3910, 40, 20));
 
         lbl_iL.setForeground(new java.awt.Color(255, 0, 0));
         lbl_iL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_iL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_iL, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 3980, 40, 20));
+        jPanel1.add(lbl_iL, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 4000, 40, 20));
 
         lbl_ho_he.setForeground(new java.awt.Color(255, 0, 0));
         lbl_ho_he.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_ho_he.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_ho_he, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 4070, 40, 20));
+        jPanel1.add(lbl_ho_he, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 4080, 40, 20));
 
         lbl_He.setForeground(new java.awt.Color(255, 0, 0));
         lbl_He.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_He.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_He, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 4000, 40, 20));
+        jPanel1.add(lbl_He, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 4030, 40, 20));
 
         lbl_profun_aguas_abajo.setForeground(new java.awt.Color(255, 0, 0));
         lbl_profun_aguas_abajo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_profun_aguas_abajo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_profun_aguas_abajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 4130, 40, 20));
+        jPanel1.add(lbl_profun_aguas_abajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 4140, 40, 20));
 
         lbl_fondo_aguas_abajo_3.setForeground(new java.awt.Color(255, 0, 0));
         lbl_fondo_aguas_abajo_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_fondo_aguas_abajo_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_fondo_aguas_abajo_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 4130, 40, 20));
+        jPanel1.add(lbl_fondo_aguas_abajo_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 4140, 40, 20));
 
-        lbl_blanco.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_blanco.setForeground(new java.awt.Color(255, 0, 0));
-        lbl_blanco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_blanco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbl_blanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 850, 30, 10));
-
-        txtL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtL, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 2486, 60, 20));
+        lblL.setBackground(new java.awt.Color(255, 0, 0));
+        lblL.setForeground(new java.awt.Color(255, 0, 0));
+        lblL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblL, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 2490, 60, 20));
 
         lblImg1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 1.png"))); // NOI18N
+        lblImg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 1 - PDF.png"))); // NOI18N
         lblImg1.setToolTipText("");
         lblImg1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lblImg1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 1260, 760));
+        jPanel1.add(lblImg1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 1270, 790));
 
         lblImg2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 2.png"))); // NOI18N
+        lblImg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 2 - PDF.png"))); // NOI18N
         lblImg2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lblImg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1260, 1260, 780));
+        jPanel1.add(lblImg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 1260, 1260, 780));
 
         lblImg3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 3.png"))); // NOI18N
+        lblImg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 3 - PDF.png"))); // NOI18N
         lblImg3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lblImg3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 2080, 1260, 760));
+        jPanel1.add(lblImg3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 2080, 1270, 780));
 
         lblImg4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImg4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 4.png"))); // NOI18N
+        lblImg4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 4 - PDF.png"))); // NOI18N
         lblImg4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lblImg4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 2870, 1260, -1));
+        jPanel1.add(lblImg4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2870, 1260, -1));
 
         lblImg5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImg5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 5.png"))); // NOI18N
+        lblImg5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 5 - PDF.png"))); // NOI18N
         lblImg5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lblImg5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 3690, 1260, 780));
+        jPanel1.add(lblImg5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 3700, 1260, 780));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -547,7 +508,7 @@ public class Inicio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -555,6 +516,9 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ImageIcon plano2 = new ImageIcon(getClass().getResource("/imagenes/Plano 2 - PDF.png"));
+        Icon icoPlano2 = new ImageIcon(plano2.getImage().getScaledInstance(1278, 803, Image.SCALE_SMOOTH));
+        lblImg2.setIcon(icoPlano2);
         if(txtQ.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Introduzca el valor del caudal de diseño.");
         }else if (txtSeparacion.getText().equals("")){
@@ -720,6 +684,7 @@ public class Inicio extends javax.swing.JFrame {
                     
                     /*CALCULO TUBERIA DE EXCESOS*/
                     double j = (cota_entrada - cota_salida) / 50;
+                    System.out.println("j:" + j);
                     double d = Math.pow((q_exce / (0.2785 * /*C*/100 * Math.pow(j, 0.54))),(1.0/2.63)); //que es C?? por ahora es 100
                     d = d * 39.3701;
                     int d_int = (int) Math.ceil(d);
@@ -731,12 +696,12 @@ public class Inicio extends javax.swing.JFrame {
                     
                     if(B_camara == 0 || longi_rejilla_2 == 0 || fondo_aguas_arriba == 0 || fondo == 0 || maxima == 0 || promedio == 0 || diseño == 0 || fondo_aguas_arriba == 0 || 
                             fondo_aguas_abajo == 0 || lamina_aguas_abajo == 0 || lamina_aguas_arriba == 0 || correc_laterales == 0 || H0 == 0 || profun_aguas_arriba == 0 || 
-                            profun_aguas_abajo == 0 || ho_he == 0 || iL == 0 || He == 0){
-                        JOptionPane.showMessageDialog(null, "Valor no admisible.", "", JOptionPane.ERROR_MESSAGE);                     
+                            profun_aguas_abajo == 0 || ho_he == 0 || iL == 0 || He == 0 || d_int == 0){
+                        JOptionPane.showMessageDialog(null, "Valor no admisible.", "Valor de 0", JOptionPane.ERROR_MESSAGE);                     
                     }else if(B_camara < 0 || longi_rejilla_2 < 0 || fondo_aguas_arriba < 0 || fondo < 0 || maxima < 0 || promedio < 0 || diseño < 0 || fondo_aguas_arriba < 0 || 
                             fondo_aguas_abajo < 0 || lamina_aguas_abajo < 0 || lamina_aguas_arriba < 0 || correc_laterales < 0 || H0 < 0 || profun_aguas_arriba < 0 || 
-                            profun_aguas_abajo < 0 || ho_he < 0 || iL < 0 || He < 0){
-                        JOptionPane.showMessageDialog(null, "Valor no admisible.", "", JOptionPane.ERROR_MESSAGE); 
+                            profun_aguas_abajo < 0 || ho_he < 0 || iL < 0 || He < 0 || d_int < 0){
+                        JOptionPane.showMessageDialog(null, "Valor no admisible.", "Valor negativo", JOptionPane.ERROR_MESSAGE); 
                     }else{
                         /*PONER DATOS EN LA IMAGEN REDONDEADOS A 2 DECIMALES*/
                         //Plano1
@@ -778,7 +743,7 @@ public class Inicio extends javax.swing.JFrame {
                         lbl_lamina_aguas_abajo.setText(lamina_aguas_abajo+"");        
                         lbl_lamina_aguas_arriba.setText(lamina_aguas_arriba+"");       
                         lbl_fondo_2.setText(fondo+""); 
-                        txtL.setText(correc_laterales+"");
+                        lblL.setText(correc_laterales+"");
 
                         //Plano 4                    
                         lbl_fondoRio_s_3.setText(fondoRio_s);
@@ -832,7 +797,7 @@ public class Inicio extends javax.swing.JFrame {
         if(Character.isLetter(validar)){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            JOptionPane.showMessageDialog(rootPane, "Solo números");
         }
     }//GEN-LAST:event_txtQKeyTyped
 
@@ -842,7 +807,7 @@ public class Inicio extends javax.swing.JFrame {
         if(Character.isLetter(validar)){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            JOptionPane.showMessageDialog(rootPane, "Solo números");
         }
     }//GEN-LAST:event_txtQpromKeyTyped
 
@@ -852,7 +817,7 @@ public class Inicio extends javax.swing.JFrame {
         if(Character.isLetter(validar)){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            JOptionPane.showMessageDialog(rootPane, "Solo números");
         }
     }//GEN-LAST:event_txtQmaxKeyTyped
 
@@ -862,7 +827,7 @@ public class Inicio extends javax.swing.JFrame {
         if(Character.isLetter(validar)){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            JOptionPane.showMessageDialog(rootPane, "Solo números");
         }
     }//GEN-LAST:event_txtPendiente_iKeyTyped
 
@@ -872,7 +837,7 @@ public class Inicio extends javax.swing.JFrame {
         if(Character.isLetter(validar)){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            JOptionPane.showMessageDialog(rootPane, "Solo números");
         }
     }//GEN-LAST:event_txtCoe_descargaKeyTyped
 
@@ -882,7 +847,7 @@ public class Inicio extends javax.swing.JFrame {
         if(Character.isLetter(validar)){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            JOptionPane.showMessageDialog(rootPane, "Solo números");
         }
     }//GEN-LAST:event_txtCota_entregaKeyTyped
 
@@ -892,7 +857,7 @@ public class Inicio extends javax.swing.JFrame {
         if(Character.isLetter(validar)){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            JOptionPane.showMessageDialog(rootPane, "Solo números");
         }
     }//GEN-LAST:event_txtSeparacionKeyTyped
 
@@ -902,7 +867,7 @@ public class Inicio extends javax.swing.JFrame {
         if(Character.isLetter(validar)){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            JOptionPane.showMessageDialog(rootPane, "Solo números");
         }
     }//GEN-LAST:event_txtFondoRioKeyTyped
 
@@ -973,13 +938,13 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblImg3;
     private javax.swing.JLabel lblImg4;
     private javax.swing.JLabel lblImg5;
+    private javax.swing.JLabel lblL;
     private javax.swing.JLabel lblLr;
     private javax.swing.JLabel lblTam_barro;
     private javax.swing.JLabel lbl_B;
     private javax.swing.JLabel lbl_H0;
     private javax.swing.JLabel lbl_He;
     private javax.swing.JLabel lbl_N;
-    private javax.swing.JLabel lbl_blanco;
     private javax.swing.JLabel lbl_bordeLibre;
     private javax.swing.JLabel lbl_bordeLibre_2;
     private javax.swing.JLabel lbl_corona_muros_contencion;
@@ -1015,7 +980,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTextField txtCoe_descarga;
     private javax.swing.JTextField txtCota_entrega;
     private javax.swing.JTextField txtFondoRio;
-    private javax.swing.JLabel txtL;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPendiente_i;
     private javax.swing.JTextField txtQ;
