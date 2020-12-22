@@ -5,11 +5,10 @@
  */
 package project_abasto;
 
-import java.awt.Color;
-import java.awt.Image;
-import java.net.URL;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import com.sun.awt.AWTUtilities;
+import java.awt.Shape;
+import java.awt.geom.RoundRectangle2D;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,16 +21,14 @@ public class Inicio extends javax.swing.JFrame {
      * Creates new form Inicio
      */
     public Inicio() {
+        this.setUndecorated(true);
         initComponents();
         this.setTitle("BocApp");
         this.setLocationRelativeTo(null);
+        Shape forma = new RoundRectangle2D.Double(0,0,this.getBounds().width, this.getBounds().height, 27, 27);
+        AWTUtilities.setWindowShape(this, forma);
         lbl_fondo_aguas_arriba_3.setOpaque(true);
         
-//        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg1, "src/imagenes/Plano 1.png");
-//        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg2, "src/imagenes/Plano 2.png");
-//        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg3, "src/imagenes/Plano 3.png");
-//        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg4, "src/imagenes/Plano 4.png");
-//        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg5, "src/imagenes/Plano 5.png");
     }
     /*Datos de entrada*/
     String qCaudal_s, qProm_s,qmaximo_s, pendiente_i_s, coe_descarga_s, cota_entrega_s, barrotes_s, a_separacion_s, fondoRio_s;
@@ -53,6 +50,7 @@ public class Inicio extends javax.swing.JFrame {
         resultado=(resultado/Math.pow(10, numeroDecimales))+parteEntera;
         return resultado;
     }
+    java.util.Date fecha = new Date();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,7 +90,6 @@ public class Inicio extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         txtFondoRio = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -141,17 +138,24 @@ public class Inicio extends javax.swing.JFrame {
         lblImg3 = new javax.swing.JLabel();
         lblImg4 = new javax.swing.JLabel();
         lblImg5 = new javax.swing.JLabel();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jButton3 = new javax.swing.JButton();
+        lblFondo = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(76, 77, 98));
         setPreferredSize(new java.awt.Dimension(1310, 720));
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(1280, 730));
 
+        jPanel1.setBackground(new java.awt.Color(181, 173, 204));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 4700));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ubicación:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 10, -1, -1));
 
@@ -165,18 +169,22 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Datos:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Caudal (Q):");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Caudal promedio (Qprom):");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Pendiente del fondo del canal (i):");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
@@ -261,6 +269,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Caudal maximo (Qmax):");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
@@ -290,11 +299,11 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel17.setText("m.");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, -1, -1));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Fecha:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 10, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
         jLabel19.setText("m.");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, -1, -1));
@@ -493,6 +502,26 @@ public class Inicio extends javax.swing.JFrame {
         lblImg5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Plano 5 - PDF.png"))); // NOI18N
         lblImg5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(lblImg5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 3700, 1260, 780));
+
+        jCalendar1.setMaxSelectableDate(fecha);
+        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, 220));
+
+        jButton3.setBackground(new java.awt.Color(175, 0, 0));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("X");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 10, -1, -1));
+
+        lblFondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pruebas-de-presion.jpg"))); // NOI18N
+        jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 520));
+
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pruebas-de-presion.jpg"))); // NOI18N
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 4080, 1300, 620));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -870,6 +899,12 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtFondoRioKeyTyped
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -909,7 +944,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbTamaBarrotes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JButton jButton3;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -923,6 +959,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -932,6 +969,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblImg1;
     private javax.swing.JLabel lblImg2;
     private javax.swing.JLabel lblImg3;
