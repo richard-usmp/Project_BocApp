@@ -25,7 +25,6 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         this.setTitle("BocApp");
         this.setLocationRelativeTo(null);
-        lbl_pendiente_i.setOpaque(true);
         lbl_fondo_aguas_arriba_3.setOpaque(true);
         
 //        rsscalelabel.RSScaleLabel.setScaleLabel(lblImg1, "src/imagenes/Plano 1.png");
@@ -253,7 +252,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.add(cmbTamaBarrotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 84, -1));
 
         jLabel10.setText("cm.");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, -1));
 
         jLabel11.setText("L/s");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
@@ -333,7 +332,7 @@ public class Inicio extends javax.swing.JFrame {
 
         lbl_corona_muros_contencion_2.setForeground(new java.awt.Color(255, 0, 0));
         lbl_corona_muros_contencion_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(lbl_corona_muros_contencion_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 2160, 50, 20));
+        jPanel1.add(lbl_corona_muros_contencion_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 2150, 50, 20));
 
         lbl_lamina_aguas_arriba.setForeground(new java.awt.Color(255, 0, 0));
         lbl_lamina_aguas_arriba.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -428,7 +427,6 @@ public class Inicio extends javax.swing.JFrame {
         lbl_fondoRio_s_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(lbl_fondoRio_s_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 3840, 40, 20));
 
-        lbl_pendiente_i.setBackground(Color.WHITE);
         lbl_pendiente_i.setForeground(new java.awt.Color(255, 0, 0));
         lbl_pendiente_i.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(lbl_pendiente_i, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 4130, 40, 20));
@@ -516,9 +514,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ImageIcon plano2 = new ImageIcon(getClass().getResource("/imagenes/Plano 2 - PDF.png"));
-        Icon icoPlano2 = new ImageIcon(plano2.getImage().getScaledInstance(1278, 803, Image.SCALE_SMOOTH));
-        lblImg2.setIcon(icoPlano2);
+    try{
         if(txtQ.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Introduzca el valor del caudal de diseño.");
         }else if (txtSeparacion.getText().equals("")){
@@ -536,6 +532,8 @@ public class Inicio extends javax.swing.JFrame {
         }else if(txtFondoRio.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Introduzca el valor del fondo del río.");
         }else{
+            int n_deci = 2;
+            
             qCaudal_s= txtQ.getText();
             qCaudal = Double.parseDouble(qCaudal_s);
             qCaudal = qCaudal/1000.0;
@@ -648,7 +646,6 @@ public class Inicio extends javax.swing.JFrame {
                     
                     /*ALTURA DE LOS MUROS DE CONTENCIÓN*/
                     h_muros = Math.pow((qmaximo / (1.84 * laterales)), (2.0/3.0));
-                    //h_muros = Math.ceil(h_muros);
                     System.out.println("H_muros: " + h_muros);
                     
                     /*CAUDAL DE EXCESOS*/
@@ -697,17 +694,16 @@ public class Inicio extends javax.swing.JFrame {
                     if(B_camara == 0 || longi_rejilla_2 == 0 || fondo_aguas_arriba == 0 || fondo == 0 || maxima == 0 || promedio == 0 || diseño == 0 || fondo_aguas_arriba == 0 || 
                             fondo_aguas_abajo == 0 || lamina_aguas_abajo == 0 || lamina_aguas_arriba == 0 || correc_laterales == 0 || H0 == 0 || profun_aguas_arriba == 0 || 
                             profun_aguas_abajo == 0 || ho_he == 0 || iL == 0 || He == 0 || d_int == 0){
-                        JOptionPane.showMessageDialog(null, "Valor no admisible.", "Valor de 0", JOptionPane.ERROR_MESSAGE);                     
+                        JOptionPane.showMessageDialog(null, "Valores no admisibles.", "Valor de 0", JOptionPane.ERROR_MESSAGE);                     
                     }else if(B_camara < 0 || longi_rejilla_2 < 0 || fondo_aguas_arriba < 0 || fondo < 0 || maxima < 0 || promedio < 0 || diseño < 0 || fondo_aguas_arriba < 0 || 
                             fondo_aguas_abajo < 0 || lamina_aguas_abajo < 0 || lamina_aguas_arriba < 0 || correc_laterales < 0 || H0 < 0 || profun_aguas_arriba < 0 || 
                             profun_aguas_abajo < 0 || ho_he < 0 || iL < 0 || He < 0 || d_int < 0){
-                        JOptionPane.showMessageDialog(null, "Valor no admisible.", "Valor negativo", JOptionPane.ERROR_MESSAGE); 
+                        JOptionPane.showMessageDialog(null, "Valores no admisibles.", "Valor negativo", JOptionPane.ERROR_MESSAGE); 
                     }else{
                         /*PONER DATOS EN LA IMAGEN REDONDEADOS A 2 DECIMALES*/
                         //Plano1
-                        B_camara = redondearDecimales(B_camara, 2);
-                        longi_rejilla_2 = redondearDecimales(longi_rejilla_2, 2);
-
+                        B_camara = redondearDecimales(B_camara, n_deci);
+                        longi_rejilla_2 = redondearDecimales(longi_rejilla_2, n_deci);
                         lbl_d.setText(d_int+"\"");                   
                         lbl_B.setText(B_camara+"");
                         lbl_N.setText(n_ori_int+"");                  
@@ -715,23 +711,24 @@ public class Inicio extends javax.swing.JFrame {
                         lblTam_barro.setText(barrotes_s);
 
                         //Plano 2
-                        fondo_aguas_arriba = redondearDecimales(fondo_aguas_arriba, 2);
+                        fondo_aguas_arriba = redondearDecimales(fondo_aguas_arriba, n_deci);
                         fondo = redondearDecimales(fondo, 2);
                         System.out.println("fondo_aguas_arriba:" + fondo_aguas_arriba);
+                        
                         lbl_corona_muros_contencion.setText(corona_muros_contencion+"");
                         lbl_fondoRio_s.setText(fondoRio_s+"");
                         lbl_fondo_aguas_arriba.setText(fondo_aguas_arriba+"");
                         lbl_fondo.setText(fondo+"");
 
                         //Plano 3
-                        maxima = redondearDecimales(maxima, 2);
-                        promedio = redondearDecimales(promedio, 2);
-                        diseño = redondearDecimales(diseño, 2);
-                        fondo_aguas_arriba = redondearDecimales(fondo_aguas_arriba, 2);
-                        fondo_aguas_abajo = redondearDecimales(fondo_aguas_abajo, 2);
-                        lamina_aguas_abajo = redondearDecimales(lamina_aguas_abajo, 2);
-                        lamina_aguas_arriba = redondearDecimales(lamina_aguas_arriba, 2);
-                        correc_laterales = redondearDecimales(correc_laterales, 2);
+                        maxima = redondearDecimales(maxima, n_deci);
+                        promedio = redondearDecimales(promedio, n_deci);
+                        diseño = redondearDecimales(diseño, n_deci);
+                        fondo_aguas_arriba = redondearDecimales(fondo_aguas_arriba, n_deci);
+                        fondo_aguas_abajo = redondearDecimales(fondo_aguas_abajo, n_deci);
+                        lamina_aguas_abajo = redondearDecimales(lamina_aguas_abajo, n_deci);
+                        lamina_aguas_arriba = redondearDecimales(lamina_aguas_arriba, n_deci);
+                        correc_laterales = redondearDecimales(correc_laterales, n_deci);
 
                         lbl_corona_muros_contencion_2.setText(corona_muros_contencion+"");
                         lbl_maxima.setText(maxima+"");
@@ -753,12 +750,12 @@ public class Inicio extends javax.swing.JFrame {
                         lbl_fondo_3.setText(fondo+""); 
 
                         //Plano 5                        
-                        H0 = redondearDecimales(H0, 2);
-                        profun_aguas_arriba = redondearDecimales(profun_aguas_arriba, 2);
-                        profun_aguas_abajo = redondearDecimales(profun_aguas_abajo, 2);
-                        ho_he= redondearDecimales(ho_he, 2);
-                        iL =redondearDecimales(iL, 2);
-                        He= redondearDecimales(He, 2);
+                        H0 = redondearDecimales(H0, n_deci);
+                        profun_aguas_arriba = redondearDecimales(profun_aguas_arriba, n_deci);
+                        profun_aguas_abajo = redondearDecimales(profun_aguas_abajo, n_deci);
+                        ho_he= redondearDecimales(ho_he, n_deci);
+                        iL =redondearDecimales(iL, n_deci);
+                        He= redondearDecimales(He, n_deci);
 
                         lbl_fondoRio_s_4.setText(fondoRio_s);
                         lbl_bordeLibre.setText(bordeLibre+"");   
@@ -780,9 +777,11 @@ public class Inicio extends javax.swing.JFrame {
                 }
             }else{
                 JOptionPane.showMessageDialog(null,"Velocidad del rio inferior o superior a la esperada.");
-            }
-            
-        }        
+            }           
+        }
+    }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Error: " + e);
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cmbTamaBarrotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTamaBarrotesActionPerformed
