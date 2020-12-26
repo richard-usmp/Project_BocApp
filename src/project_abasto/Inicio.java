@@ -5,11 +5,18 @@
  */
 package project_abasto;
 
+
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import project_abasto.Project_abasto;
 
 /**
  *
@@ -65,7 +72,6 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -93,6 +99,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         lbl_maxima = new javax.swing.JLabel();
         lbl_lamina_aguas_abajo = new javax.swing.JLabel();
@@ -140,6 +147,9 @@ public class Inicio extends javax.swing.JFrame {
         lblImg5 = new javax.swing.JLabel();
         jCalendar1 = new com.toedter.calendar.JCalendar();
         jButton3 = new javax.swing.JButton();
+        cmbDep = new javax.swing.JComboBox<>();
+        cmbProvin = new javax.swing.JComboBox<>();
+        jLabel24 = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
 
@@ -156,8 +166,8 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Ubicación:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 10, -1, -1));
+        jLabel1.setText("Provincia:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -168,7 +178,6 @@ public class Inicio extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Cota del río en la entrega:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -263,12 +272,17 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel1.add(cmbTamaBarrotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 84, -1));
 
+        jLabel10.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("cm.");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, -1));
 
+        jLabel11.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("L/s");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
 
+        jLabel12.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jLabel12.setText("%");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
 
@@ -284,10 +298,12 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel1.add(txtQmax, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 84, -1));
 
-        jLabel14.setText("m3/s");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
+        jLabel14.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        jLabel14.setText("m³/s");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
 
-        jLabel15.setText("m3/s");
+        jLabel15.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        jLabel15.setText("m³/s");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -302,20 +318,33 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel1.add(txtFondoRio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 84, -1));
 
+        jLabel17.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("m.");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Fecha:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, -1, -1));
 
+        jLabel19.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jLabel19.setText("m.");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jButton2.setText("Generar PDF");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 4540, 180, 50));
+
+        jLabel23.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Departamento:");
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 10, -1, -1));
 
         jLabel20.setText("1.00");
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 1440, 30, 30));
@@ -509,7 +538,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.add(lblImg5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 3700, 1260, 780));
 
         jCalendar1.setMaxSelectableDate(fecha);
-        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, 220));
+        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, 220));
 
         jButton3.setBackground(new java.awt.Color(175, 0, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -520,6 +549,21 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 10, -1, -1));
+
+        cmbDep.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Amazonas", "Áncash", "Apurímac", "Arequipa", "Ayacucho", "Cajamarca", "Callao", "Cusco", "Huancavelica", "Huánuco", "Ica", "Junín", "La Libertad", "Lambayeque", "Lima", "Loreto", "Madre de Dios", "Moquegua", "Pasco", "Piura", "Puno", "San Martín", "Tacna", "Tumbes", "Ucayali" }));
+        cmbDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbDepActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbDep, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 180, -1));
+
+        jPanel1.add(cmbProvin, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 180, -1));
+
+        jLabel24.setFont(new java.awt.Font("Papyrus", 0, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("Ing. Fernando Paz Zagaceta ");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 420, -1, -1));
 
         lblFondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pruebas-de-presion.jpg"))); // NOI18N
@@ -910,6 +954,33 @@ public class Inicio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void cmbDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDepActionPerformed
+        // TODO add your handling code here:
+        Project_abasto.Provincia();
+    }//GEN-LAST:event_cmbDepActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String dia=Integer.toString(jCalendar1.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes=Integer.toString(jCalendar1.getCalendar().get(Calendar.MONTH));
+        String año=Integer.toString(jCalendar1.getCalendar().get(Calendar.YEAR));
+        String fechas=año+"/"+mes+"/"+dia;
+        int width = (int) PageSize.A4.getWidth();
+        int height = (int) PageSize.A4.getHeight();
+        String ubicacion = "Departamento: " + cmbDep.getSelectedItem().toString() + "Provincia: " + cmbProvin.getSelectedItem().toString();
+        try{
+            String ruta= System.getProperty("user.home");
+            PageSize pagesize = new PageSize( width, height );
+            String DesGuardado = ruta+"\\Desktop"+"\\"+cmbDep.getSelectedItem().toString()+".pdf";
+            PdfWriter EscribirPDF = new PdfWriter(DesGuardado);
+            PdfDocument DocumentoPDF = new PdfDocument(EscribirPDF);          
+            Document Documento = new Document(DocumentoPDF, pagesize);
+            Cabecera cabeceraD = new Cabecera(Documento, ubicacion, fechas);
+        }catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -946,6 +1017,8 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JComboBox<String> cmbDep;
+    public static javax.swing.JComboBox<String> cmbProvin;
     private javax.swing.JComboBox<String> cmbTamaBarrotes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -965,6 +1038,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1022,7 +1097,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTextField txtCoe_descarga;
     private javax.swing.JTextField txtCota_entrega;
     private javax.swing.JTextField txtFondoRio;
-    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPendiente_i;
     private javax.swing.JTextField txtQ;
     private javax.swing.JTextField txtQmax;
