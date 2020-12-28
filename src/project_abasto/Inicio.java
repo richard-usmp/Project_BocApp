@@ -45,7 +45,8 @@ public class Inicio extends javax.swing.JFrame {
     double qCaudal, qProm, qmaximo, pendiente_i, coe_descarga, cota_entrega, barrotes, a_separacion, fondoRio;
     /*DATOS*/
     double h_diseño, laterales=1, correc_laterales,corona_muros_contencion, v_rio, Xs, Xi, B, area_neta, v_barrotes=0.1, longi_rejilla,n_ori, profun_aguas_abajo/*he*/, profun_critica/*hc*/, 
-            profun_aguas_arriba/*ho*/, He, H0, longi_canal, bordeLibre=0.15, vel_agua_final, B_camara, h_muros, altura_reservorio_exce, q_captado, q_exce, H_exce, V_exce, longi_rejilla_2;
+            profun_aguas_arriba/*ho*/, He, H0, longi_canal, bordeLibre=0.15, vel_agua_final, B_camara, h_muros, altura_reservorio_exce, q_captado, q_exce, H_exce, V_exce, longi_rejilla_2,
+            ho_he, iL;
     int n_ori_int, d_int;
     /*CALCULO DE COTAS*/    
     double diseño, maxima, promedio, fondo_aguas_arriba, fondo_aguas_abajo, lamina_aguas_arriba, lamina_aguas_abajo, Cresta_vertedero_excesos, fondo, cota_entrada, 
@@ -768,7 +769,6 @@ public class Inicio extends javax.swing.JFrame {
                     d_int = (int) Math.ceil(d);
                     System.out.println("d\":" + d_int);
                     
-                    double ho_he, iL;
                     ho_he = profun_aguas_arriba - profun_aguas_abajo;
                     iL = pendiente_i*correc_laterales;
                     
@@ -989,7 +989,7 @@ public class Inicio extends javax.swing.JFrame {
                 Cabecera cabeceraD = new Cabecera(documento, ubicacion, fechas);
 
                 DocumentoPDF.addEventHandler(PdfDocumentEvent.END_PAGE, cabeceraD);
-                documento.setMargins(60, 21, 60, 31);
+                documento.setMargins(60, 31, 60, 31);
                 
                 Image logo=new Image(ImageDataFactory.create(logo_img));
                 logo.scaleToFit(75,86);
@@ -1044,31 +1044,64 @@ public class Inicio extends javax.swing.JFrame {
 
                 Image plano1=new Image(ImageDataFactory.create(ruta_plano_1));
                 plano1.scaleToFit(630,515);
-                List plano1_var=new List().setSymbolIndent(12).setListSymbol("-");
-                plano1_var.add(new ListItem("Lr:"+ longi_rejilla_2))
-                        .add("n: " +n_ori_int)
-                        .add("Barrotes: "+barrotes_s)
-                        .add("D: " + d_int)
-                        .add("B: " + B_camara);
-                plano1_var.setRelativePosition(631, 0, 0, 395);
+                Paragraph plano1_var = new Paragraph("\nLr:"+ longi_rejilla_2 +"\t\t\t"
+                        + "n: " +n_ori_int + "\t\t\t"
+                        +"Barrotes: "+barrotes_s + "\t\t\t"
+                        +"D: " + d_int + "\t\t\t"
+                        +"B: " + B_camara + "\t\t\t");
                 documento.add(plano1);
                 documento.add(plano1_var);                                       
                               
                 Image plano2=new Image(ImageDataFactory.create(ruta_plano_2));
                 plano2.scaleToFit(630,515);
+                Paragraph plano2_var = new Paragraph("\nCm:"+ corona_muros_contencion +"\t\t\t"
+                        + "Fr: " +fondoRio_s + "\t\t\t"
+                        +"Faa: "+fondo_aguas_arriba + "\t\t\t"
+                        +"Cr: " + fondo + "\t\t\t");
                 documento.add(plano2);
+                documento.add(plano2_var);
                 
                 Image plano3=new Image(ImageDataFactory.create(ruta_plano_3));
                 plano3.scaleToFit(630,515);
+                Paragraph plano3_var = new Paragraph("\nCm:"+ corona_muros_contencion +"\t\t\t"
+                        + "Lm: " +maxima + "\t\t\t"
+                        +"Lp: "+promedio + "\t\t\t\t"
+                        +"Ld: " + diseño + "\t\t\t"
+                        +"Fr: " + fondoRio_s + "\t\t\t"
+                        +"Faa: " + fondo_aguas_arriba + "\t\t\t"
+                        +"Fab: " + fondo_aguas_abajo + "\t\t\t\t"
+                        +"Lab: " + lamina_aguas_abajo + "\t\t"
+                        +"Laa: " + lamina_aguas_arriba + "\t\t\t"
+                        +"Cr: " + fondo + "\t\t\t");
                 documento.add(plano3);
+                documento.add(plano3_var);                              
                 
                 Image plano4=new Image(ImageDataFactory.create(ruta_plano_4));
                 plano4.scaleToFit(630,515);
+                Paragraph plano4_var = new Paragraph("\nFr:"+ fondoRio_s +"\t\t\t"
+                        + "Fab: " +fondo_aguas_abajo + "\t\t\t"
+                        +"Laa: "+lamina_aguas_arriba + "\t\t\t"
+                        +"Lab: " + lamina_aguas_abajo + "\t\t\t"
+                        +"Cr: " + fondo + "\t\t\t");
                 documento.add(plano4);
+                documento.add(plano4_var);
                 
                 Image plano5=new Image(ImageDataFactory.create(ruta_plano_5));
                 plano5.scaleToFit(630,515);
+                Paragraph plano5_var = new Paragraph("\nL:"+ correc_laterales +"\t\t\t"
+                        + "Fr: " +fondoRio_s + "\t\t\t"
+                        +"B.L.: "+bordeLibre + "\t\t\t"
+                        +"H0: " + H0 + "\t\t\t"
+                        +"ho: " + profun_aguas_arriba + "\t\t\t"
+                        +"Faa: " + fondo_aguas_arriba + "\t\t\t"
+                        +"i%: " + pendiente_i_s + "%" + "\t\t\t"
+                        +"iL: " + iL + "\t\t\t"
+                        +"ho-he: " + ho_he + "\t\t\t"
+                        +"he: " + profun_aguas_abajo + "\t\t\t"
+                        +"He: " + He + "\t\t\t");
                 documento.add(plano5);
+                documento.add(plano5_var);
+                
                 
                 
                 documento.close();
