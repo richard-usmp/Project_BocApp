@@ -15,6 +15,8 @@ import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.layout.Canvas;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.kernel.colors.Color;
+import com.itextpdf.kernel.colors.DeviceCmyk;
 
 public class Cabecera implements IEventHandler {
      private  Document documento;
@@ -38,7 +40,7 @@ public class Cabecera implements IEventHandler {
          
         float xEncabezado = pdfDoc.getDefaultPageSize().getX() + documento.getLeftMargin();
         float yEncabezado = pdfDoc.getDefaultPageSize().getTop() - documento.getTopMargin();
-        float anchoEncabezado = page.getPageSize().getWidth() - 72;
+        float anchoEncabezado = page.getPageSize().getWidth() - 36;
         float altoEncabezado = 50F;
  
         Rectangle rectanguloEncabezado = new Rectangle(xEncabezado, yEncabezado, anchoEncabezado, altoEncabezado);
@@ -92,7 +94,7 @@ public class Cabecera implements IEventHandler {
         tablaPie.setWidth(527F);
         Integer pageNum = docEvent.getDocument().getPageNumber(page);
          
-        tablaPie.addCell("Pagina " + pageNum+"\tProyecto Hidra");
+        tablaPie.addCell(pageNum+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tProyecto BocApp");
          
         return tablaPie;
     }
@@ -108,7 +110,7 @@ public class Cabecera implements IEventHandler {
         PdfPage page = docEvent.getPage();
         PdfCanvas canvas = new PdfCanvas(page.newContentStreamBefore(), page.getResources(), pdfDoc);        
          
-        Table tablaEncabezado = this.crearTablaEncabezado("Ubicacion de la bocatoma:"+Ubicacion+"\n"+"Fecha:"+fecha);
+        Table tablaEncabezado = this.crearTablaEncabezado("UBICACIÓN DE LA BOCATOMA: "+Ubicacion+"\n"+"FECHA:"+fecha);
         Rectangle rectanguloEncabezado = this.crearRectanguloEncabezado(docEvent);        
         Canvas canvasEncabezado = new Canvas(canvas, pdfDoc, rectanguloEncabezado);        
         canvasEncabezado.add(tablaEncabezado);      

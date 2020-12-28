@@ -6,10 +6,16 @@
 package project_abasto;
 
 
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.events.PdfDocumentEvent;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.List;
+import com.itextpdf.layout.element.ListItem;
+import com.itextpdf.layout.element.Paragraph;
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
@@ -18,10 +24,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import project_abasto.Project_abasto;
 
-/**
- *
- * @author Ricardo
- */
+
 public class Inicio extends javax.swing.JFrame {
 
     /**
@@ -42,8 +45,8 @@ public class Inicio extends javax.swing.JFrame {
     double qCaudal, qProm, qmaximo, pendiente_i, coe_descarga, cota_entrega, barrotes, a_separacion, fondoRio;
     /*DATOS*/
     double h_diseño, laterales=1, correc_laterales,corona_muros_contencion, v_rio, Xs, Xi, B, area_neta, v_barrotes=0.1, longi_rejilla,n_ori, profun_aguas_abajo/*he*/, profun_critica/*hc*/, 
-            profun_aguas_arriba/*ho*/, He, H0, longi_canal, bordeLibre=0.15, vel_agua_final, B_camara, h_muros, altura_reservorio_exce, q_captado, q_exce, H_exce, V_exce;
-    int n_ori_int;
+            profun_aguas_arriba/*ho*/, He, H0, longi_canal, bordeLibre=0.15, vel_agua_final, B_camara, h_muros, altura_reservorio_exce, q_captado, q_exce, H_exce, V_exce, longi_rejilla_2;
+    int n_ori_int, d_int;
     /*CALCULO DE COTAS*/    
     double diseño, maxima, promedio, fondo_aguas_arriba, fondo_aguas_abajo, lamina_aguas_arriba, lamina_aguas_abajo, Cresta_vertedero_excesos, fondo, cota_entrada, 
             cota_salida;
@@ -691,7 +694,7 @@ public class Inicio extends javax.swing.JFrame {
                 double area_neta_3 = a_separacion * B_ceil * n_ori_int;
                 area_neta_3 = redondearDecimales(area_neta_3, 3);
                 double v_barrotes_2 = qCaudal / (0.9 * area_neta_3);
-                double longi_rejilla_2 = (area_neta_3 * (a_separacion + barrotes)) / (a_separacion * B_ceil);
+                longi_rejilla_2 = (area_neta_3 * (a_separacion + barrotes)) / (a_separacion * B_ceil);
                 System.out.println("v_barrotes_2: " + v_barrotes_2);
                 System.out.println("longi_rejilla_2: " + longi_rejilla_2);
                 
@@ -762,7 +765,7 @@ public class Inicio extends javax.swing.JFrame {
                     System.out.println("j:" + j);
                     double d = Math.pow((q_exce / (0.2785 * /*C*/100 * Math.pow(j, 0.54))),(1.0/2.63)); //que es C?? por ahora es 100
                     d = d * 39.3701;
-                    int d_int = (int) Math.ceil(d);
+                    d_int = (int) Math.ceil(d);
                     System.out.println("d\":" + d_int);
                     
                     double ho_he, iL;
@@ -960,25 +963,121 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbDepActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        String dia=Integer.toString(jCalendar1.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes=Integer.toString(jCalendar1.getCalendar().get(Calendar.MONTH));
-        String año=Integer.toString(jCalendar1.getCalendar().get(Calendar.YEAR));
-        String fechas=año+"/"+mes+"/"+dia;
-        int width = (int) PageSize.A4.getWidth();
-        int height = (int) PageSize.A4.getHeight();
-        String ubicacion = "Departamento: " + cmbDep.getSelectedItem().toString() + "Provincia: " + cmbProvin.getSelectedItem().toString();
-        try{
-            String ruta= System.getProperty("user.home");
-            PageSize pagesize = new PageSize( width, height );
-            String DesGuardado = ruta+"\\Desktop"+"\\"+cmbDep.getSelectedItem().toString()+".pdf";
-            PdfWriter EscribirPDF = new PdfWriter(DesGuardado);
-            PdfDocument DocumentoPDF = new PdfDocument(EscribirPDF);          
-            Document Documento = new Document(DocumentoPDF, pagesize);
-            Cabecera cabeceraD = new Cabecera(Documento, ubicacion, fechas);
-        }catch(Exception e){
-            
+        if(cmbProvin.getSelectedItem()==null){
+            JOptionPane.showMessageDialog(null,"Introduzca la provincia.");
+        }else{
+            String dia=Integer.toString(jCalendar1.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes=Integer.toString(jCalendar1.getCalendar().get(Calendar.MONTH));
+            String año=Integer.toString(jCalendar1.getCalendar().get(Calendar.YEAR));
+            String fechas=dia+"/"+mes+"/"+año;
+            int height = (int) PageSize.A4.getWidth();
+            int width = (int) PageSize.A4.getHeight();
+            String ubicacion = "Departamento: " + cmbDep.getSelectedItem().toString() + " Provincia: " + cmbProvin.getSelectedItem().toString();
+            String ruta_plano_1 = "src\\imagenes\\Plano 1 - var.png";
+            String ruta_plano_2 = "src\\imagenes\\Plano 2 - var.png";
+            String ruta_plano_3 = "src\\imagenes\\Plano 3 - var.png";
+            String ruta_plano_4 = "src\\imagenes\\Plano 4 - var.png";
+            String ruta_plano_5 = "src\\imagenes\\Plano 5 - var.png";
+            String logo_img = "src\\imagenes\\logo_usmp.png";
+            try{
+                String ruta_user= System.getProperty("user.home");
+                PageSize pagesize = new PageSize( width, height );
+                String DesGuardado = ruta_user+"\\Desktop"+"\\"+cmbDep.getSelectedItem().toString()+".pdf";
+                PdfWriter EscribirPDF = new PdfWriter(DesGuardado);
+                PdfDocument DocumentoPDF = new PdfDocument(EscribirPDF);          
+                Document documento = new Document(DocumentoPDF, pagesize);
+                Cabecera cabeceraD = new Cabecera(documento, ubicacion, fechas);
+
+                DocumentoPDF.addEventHandler(PdfDocumentEvent.END_PAGE, cabeceraD);
+                documento.setMargins(60, 21, 60, 31);
+                
+                Image logo=new Image(ImageDataFactory.create(logo_img));
+                logo.scaleToFit(75,86);
+                logo.setFixedPosition(715, 505);
+                documento.add(logo);
+                
+                Paragraph titulo = new Paragraph();
+                titulo.add("Fórmulas");
+                List formulas_lista=new List().setSymbolIndent(12).setListSymbol("-");
+                formulas_lista.add(new ListItem("Caudal máximo: "))
+                        .add("Lamina de agua en las condiciones de diseño: ")
+                        .add("Corrección por las contracciones laterales: ")
+                        .add("Velocidad del río sobre la presa: ")
+                        .add("Ancho del canal de aducción: ")
+                        .add("Área neta: ")
+                        .add("Longitud rejilla: ")
+                        .add("Recalcular área neta: ")
+                        .add("Velocidad entre los barrotes: ")
+                        .add("Longitud rejilla 2:")
+                        .add("Profundidad aguas abajo: ")
+                        .add("Profundidad aguas arriba: ")
+                        .add("H0: ")
+                        .add("He: ")
+                        .add("Xi_2: ")
+                        .add("B Cámara: ")
+                        .add("Altura de los muros de contención: ")
+                        .add("Caudal captado: ")
+                        .add("Caudal de excesos: ")
+                        .add("Vertedero de excesos: ")
+                        .add("Lámina sobre la presa"
+                                + "\nDiseño: "
+                                + "\nMaxima: "
+                                + "\nPromedio: ")
+                        .add("Corona de los muros de contención: ")
+                        .add("Canal de aducción"
+                                + "\nFondo aguas arriba: "
+                                + "\nFondo aguas abajo: "
+                                + "\nLámina de aguas arriba: "
+                                + "\nLámina de aguas abajo: ")
+                        .add("Cámara de recolección"
+                                + "\nCresta del vertedero de excesos: "
+                                + "\nFondo: ")
+                        .add("Tuberias de excesos"
+                                + "\nCota de entrada: "
+                                + "\nCota del río en la entrega: "
+                                + "\nCota de salida: ")
+                        .add("J: ")
+                        .add("D: ");           
+                
+                documento.add(titulo);
+                documento.add(formulas_lista);
+
+                Image plano1=new Image(ImageDataFactory.create(ruta_plano_1));
+                plano1.scaleToFit(630,515);
+                List plano1_var=new List().setSymbolIndent(12).setListSymbol("-");
+                plano1_var.add(new ListItem("Lr:"+ longi_rejilla_2))
+                        .add("n: " +n_ori_int)
+                        .add("Barrotes: "+barrotes_s)
+                        .add("D: " + d_int)
+                        .add("B: " + B_camara);
+                plano1_var.setRelativePosition(631, 0, 0, 395);
+                documento.add(plano1);
+                documento.add(plano1_var);                                       
+                              
+                Image plano2=new Image(ImageDataFactory.create(ruta_plano_2));
+                plano2.scaleToFit(630,515);
+                documento.add(plano2);
+                
+                Image plano3=new Image(ImageDataFactory.create(ruta_plano_3));
+                plano3.scaleToFit(630,515);
+                documento.add(plano3);
+                
+                Image plano4=new Image(ImageDataFactory.create(ruta_plano_4));
+                plano4.scaleToFit(630,515);
+                documento.add(plano4);
+                
+                Image plano5=new Image(ImageDataFactory.create(ruta_plano_5));
+                plano5.scaleToFit(630,515);
+                documento.add(plano5);
+                
+                
+                documento.close();
+                JOptionPane.showMessageDialog(null, "Se ha generado en "+ ruta_user + "\\Desktop");
+            }catch(Exception e){
+                System.out.println("Error: ------>"+e);
+            }
         }
+            
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

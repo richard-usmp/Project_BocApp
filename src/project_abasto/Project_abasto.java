@@ -7,10 +7,7 @@ package project_abasto;
 
 import static project_abasto.Inicio.*;
 
-/**
- *
- * @author Ricardo
- */
+
 public class Project_abasto {
 
     /**
