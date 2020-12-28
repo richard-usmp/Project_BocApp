@@ -110,7 +110,7 @@ public class Cabecera implements IEventHandler {
         PdfPage page = docEvent.getPage();
         PdfCanvas canvas = new PdfCanvas(page.newContentStreamBefore(), page.getResources(), pdfDoc);        
          
-        Table tablaEncabezado = this.crearTablaEncabezado("UBICACIÓN DE LA BOCATOMA: "+Ubicacion+"\n"+"FECHA:"+fecha);
+        Table tablaEncabezado = this.crearTablaEncabezado("Fecha: "+ fecha + "\n" + "UBICACIÓN DE LA BOCATOMA: "+Ubicacion);
         Rectangle rectanguloEncabezado = this.crearRectanguloEncabezado(docEvent);        
         Canvas canvasEncabezado = new Canvas(canvas, pdfDoc, rectanguloEncabezado);        
         canvasEncabezado.add(tablaEncabezado);      

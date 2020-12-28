@@ -46,7 +46,7 @@ public class Inicio extends javax.swing.JFrame {
     /*DATOS*/
     double h_diseño, laterales=1, correc_laterales,corona_muros_contencion, v_rio, Xs, Xi, B, area_neta, v_barrotes=0.1, longi_rejilla,n_ori, profun_aguas_abajo/*he*/, profun_critica/*hc*/, 
             profun_aguas_arriba/*ho*/, He, H0, longi_canal, bordeLibre=0.15, vel_agua_final, B_camara, h_muros, altura_reservorio_exce, q_captado, q_exce, H_exce, V_exce, longi_rejilla_2,
-            ho_he, iL;
+            ho_he, iL, area_neta_2, v_barrotes_2, Xi_2, e_Xs_esos, j, d;
     int n_ori_int, d_int;
     /*CALCULO DE COTAS*/    
     double diseño, maxima, promedio, fondo_aguas_arriba, fondo_aguas_abajo, lamina_aguas_arriba, lamina_aguas_abajo, Cresta_vertedero_excesos, fondo, cota_entrada, 
@@ -688,13 +688,13 @@ public class Inicio extends javax.swing.JFrame {
                 }   
                 
                 /*Recalcular area neta*/               
-                double area_neta_2 = (a_separacion / (a_separacion+barrotes)) * B_ceil * longi_rejilla;
+                area_neta_2 = (a_separacion / (a_separacion+barrotes)) * B_ceil * longi_rejilla;
                 n_ori = area_neta_2 / (a_separacion*B_ceil);
                 n_ori_int =(int) Math.ceil(n_ori);
                 System.out.println("numero de orificios: " + n_ori_int);
                 double area_neta_3 = a_separacion * B_ceil * n_ori_int;
                 area_neta_3 = redondearDecimales(area_neta_3, 3);
-                double v_barrotes_2 = qCaudal / (0.9 * area_neta_3);
+                v_barrotes_2 = qCaudal / (0.9 * area_neta_3);
                 longi_rejilla_2 = (area_neta_3 * (a_separacion + barrotes)) / (a_separacion * B_ceil);
                 System.out.println("v_barrotes_2: " + v_barrotes_2);
                 System.out.println("longi_rejilla_2: " + longi_rejilla_2);
@@ -717,7 +717,7 @@ public class Inicio extends javax.swing.JFrame {
                 if(0.3<vel_agua_final && vel_agua_final<3.0){
                     /*DISEÑO DE LA CÁMARA DE RECOLECCIÓN*/
                     double Xs_2 = 0.36 * Math.pow(vel_agua_final, (2.0/3.0)) + 0.6 * Math.pow(profun_aguas_abajo, (4.0/7.0));
-                    double Xi_2 = 0.18 * Math.pow(vel_agua_final,(4.0/7.0)) + 0.74 * Math.pow(profun_aguas_abajo, (3.0/4.0));
+                    Xi_2 = 0.18 * Math.pow(vel_agua_final,(4.0/7.0)) + 0.74 * Math.pow(profun_aguas_abajo, (3.0/4.0));
                     B_camara = Xs_2 + 0.3;
                     if(B_camara<1.5){
                         B_camara = 1.5;
@@ -739,7 +739,7 @@ public class Inicio extends javax.swing.JFrame {
                     /*CONDICIONES EN EL VERTEDERO DE EXCESOS*/
                     H_exce = Math.pow((q_exce / (1.84 * B_camara)),(2.0/3.0));
                     V_exce = q_exce / (H_exce * B_camara);
-                    double e_Xs_esos = 0.36 * Math.pow(V_exce, (2.0/3.0)) + 0.6 * Math.pow(H_exce, (4.0/7.0)); 
+                    e_Xs_esos = 0.36 * Math.pow(V_exce, (2.0/3.0)) + 0.6 * Math.pow(H_exce, (4.0/7.0)); 
                     System.out.println("e_Xs_esos: " + e_Xs_esos);
                     
                     /*CALCULO DE COTAS*/
@@ -762,9 +762,9 @@ public class Inicio extends javax.swing.JFrame {
                     cota_salida = cota_entrega + coe_descarga/*es esta variablñe correcta?*/;
                     
                     /*CALCULO TUBERIA DE EXCESOS*/
-                    double j = (cota_entrada - cota_salida) / 50;
+                    j = (cota_entrada - cota_salida) / 50;
                     System.out.println("j:" + j);
-                    double d = Math.pow((q_exce / (0.2785 * /*C*/100 * Math.pow(j, 0.54))),(1.0/2.63)); //que es C?? por ahora es 100
+                    d = Math.pow((q_exce / (0.2785 * /*C*/100 * Math.pow(j, 0.54))),(1.0/2.63)); //que es C?? por ahora es 100
                     d = d * 39.3701;
                     d_int = (int) Math.ceil(d);
                     System.out.println("d\":" + d_int);
@@ -963,7 +963,23 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbDepActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(cmbProvin.getSelectedItem()==null){
+        if(txtQ.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Introduzca el valor del caudal de diseño.");
+        }else if (txtSeparacion.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Introduzca la separación entre barrotes.");
+        }else if(txtPendiente_i.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Introduzca la pendiente del fondo del canal.");
+        }else if(txtQmax.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Introduzca el valor del caudal maximo.");
+        }else if(txtQprom.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Introduzca el valor del caudal promedio.");
+        }else if(txtCoe_descarga.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Introduzca el valor del coeficiente de descarga.");
+        }else if(txtCota_entrega.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Introduzca el valor de la Cota de entrega.");
+        }else if(txtFondoRio.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Introduzca el valor del fondo del río.");
+        }else if(cmbProvin.getSelectedItem()==null){
             JOptionPane.showMessageDialog(null,"Introduzca la provincia.");
         }else{
             String dia=Integer.toString(jCalendar1.getCalendar().get(Calendar.DAY_OF_MONTH));
@@ -972,7 +988,7 @@ public class Inicio extends javax.swing.JFrame {
             String fechas=dia+"/"+mes+"/"+año;
             int height = (int) PageSize.A4.getWidth();
             int width = (int) PageSize.A4.getHeight();
-            String ubicacion = "Departamento: " + cmbDep.getSelectedItem().toString() + " Provincia: " + cmbProvin.getSelectedItem().toString();
+            String ubicacion = cmbProvin.getSelectedItem().toString()+", "+cmbDep.getSelectedItem().toString();
             String ruta_plano_1 = "src\\imagenes\\Plano 1 - var.png";
             String ruta_plano_2 = "src\\imagenes\\Plano 2 - var.png";
             String ruta_plano_3 = "src\\imagenes\\Plano 3 - var.png";
@@ -997,47 +1013,47 @@ public class Inicio extends javax.swing.JFrame {
                 documento.add(logo);
                 
                 Paragraph titulo = new Paragraph();
-                titulo.add("Fórmulas");
+                titulo.add("Fórmulas").setUnderline();
                 List formulas_lista=new List().setSymbolIndent(12).setListSymbol("-");
-                formulas_lista.add(new ListItem("Caudal máximo: "))
-                        .add("Lamina de agua en las condiciones de diseño: ")
-                        .add("Corrección por las contracciones laterales: ")
-                        .add("Velocidad del río sobre la presa: ")
-                        .add("Ancho del canal de aducción: ")
-                        .add("Área neta: ")
-                        .add("Longitud rejilla: ")
-                        .add("Recalcular área neta: ")
-                        .add("Velocidad entre los barrotes: ")
-                        .add("Longitud rejilla 2:")
-                        .add("Profundidad aguas abajo: ")
-                        .add("Profundidad aguas arriba: ")
-                        .add("H0: ")
-                        .add("He: ")
-                        .add("Xi_2: ")
-                        .add("B Cámara: ")
-                        .add("Altura de los muros de contención: ")
-                        .add("Caudal captado: ")
-                        .add("Caudal de excesos: ")
-                        .add("Vertedero de excesos: ")
+                formulas_lista.add(new ListItem("Lamina de agua en las condiciones de diseño: (Q / 1.84 * L) ^ (2/3) = "+ h_diseño ))
+                        .add("Corrección por las contracciones laterales: L - 0.2 * Hdiseño = " + correc_laterales)
+                        .add("Velocidad del río sobre la presa: Q/L' * Hdiseño = "+ v_rio)
+                        .add("Ancho del canal de aducción: Xs + 0.1 = " + B)
+                        .add("Área neta: Q / 0.9 * Vb = " + area_neta)
+                        .add("Longitud rejilla: (An * (a + b)) / (a * B) = " + longi_rejilla)
+                        .add("Recalcular área neta: (a / a+b) * B * Lr = " + area_neta_2)
+                        .add("Número de barrotes: An_2 / (a*B) = "+n_ori_int)
+                        .add("Velocidad entre los barrotes: Q / 0.9 * An_3 = "+ v_barrotes_2)
+                        .add("Longitud rejilla 2: (An_3 * (a + b)) / (a * B) = " + longi_rejilla_2)
+                        .add("Profundidad aguas abajo: (Q^2 / 9.81 * B^2)^(1/3) = " +profun_aguas_abajo)
+                        .add("Profundidad aguas arriba: (2*he^2 + (he - (i*Lc / 3)) ^2)^(1/2) - (2/3) * iLr = "+ profun_aguas_arriba)
+                        .add("H0: ho + B.L. = " + H0)
+                        .add("He: he + (ho - he) + i*Lc + B.L = " + He)
+                        .add("Xi_2: 0.18 * Ve^(4/7) + 0.74 * he^(3/4) = "+Xi_2)
+                        .add("B Cámara: Xs_2 + 0.3 = "+B_camara)
+                        .add("Altura de los muros de contención: (Q / 1.84 * L)^(2/3) = "+h_muros)
+                        .add("Caudal captado: Cd * An_3 * Raiz(2 * 9.81 * H) = "+q_captado )
+                        .add("Caudal de excesos: Qcaptado - Q = "+q_exce)
+                        .add("Vertedero de excesos: 0.36 * Vexce.^(2/3) + 0.6 * Hexce.^(4/7) = "+e_Xs_esos)
                         .add("Lámina sobre la presa"
-                                + "\nDiseño: "
-                                + "\nMaxima: "
-                                + "\nPromedio: ")
-                        .add("Corona de los muros de contención: ")
+                                + "\nDiseño: Fondo del río en la captación + Hdiseño = " + diseño
+                                + "\nMaxima: Fondo del río en la captación + H_muros = " + maxima
+                                + "\nPromedio: Fondo del río en la captación + H = "+ promedio) 
+                        .add("Corona de los muros de contención: Fondo del río en la captación + 1 = "+corona_muros_contencion)
                         .add("Canal de aducción"
-                                + "\nFondo aguas arriba: "
-                                + "\nFondo aguas abajo: "
-                                + "\nLámina de aguas arriba: "
-                                + "\nLámina de aguas abajo: ")
+                                + "\nFondo aguas arriba: Fondo del río en la captación - H0 = " +fondo_aguas_arriba 
+                                + "\nFondo aguas abajo: Fondo del río en la captación - He = " +fondo_aguas_abajo 
+                                + "\nLámina de aguas arriba: (Fondo del río en la captación - H0)+h0 = " +lamina_aguas_arriba 
+                                + "\nLámina de aguas abajo: (Fondo del río en la captación - He)+he =  "+lamina_aguas_abajo )
                         .add("Cámara de recolección"
-                                + "\nCresta del vertedero de excesos: "
-                                + "\nFondo: ")
+                                + "\nCresta del vertedero de excesos: Fondo del río en la captación - He - B.L. = "+Cresta_vertedero_excesos 
+                                + "\nFondo: Fondo del río en la captación - He - B.L - 0.6 = "+ fondo)
                         .add("Tuberias de excesos"
-                                + "\nCota de entrada: "
-                                + "\nCota del río en la entrega: "
-                                + "\nCota de salida: ")
-                        .add("J: ")
-                        .add("D: ");           
+                                + "\nCota de entrada: Fondo= " + cota_entrada 
+                                + "\nCota del río en la entrega: " +cota_entrega  
+                                + "\nCota de salida: Cota del río en la entrega + Cd = "+cota_salida)
+                        .add("J: (Cota de entrada - Cota de salida) / 50 = "+j)
+                        .add("D: (Q / 0.2785 * C * J^0.54)^(1/2.63) = "+d);           
                 
                 documento.add(titulo);
                 documento.add(formulas_lista);
