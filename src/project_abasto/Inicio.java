@@ -46,7 +46,7 @@ public class Inicio extends javax.swing.JFrame {
     /*DATOS*/
     double h_diseño, laterales=1, correc_laterales,corona_muros_contencion, v_rio, Xs, Xi, B, area_neta, v_barrotes=0.1, longi_rejilla,n_ori, profun_aguas_abajo/*he*/, profun_critica/*hc*/, 
             profun_aguas_arriba/*ho*/, He, H0, longi_canal, bordeLibre=0.15, vel_agua_final, B_camara, h_muros, altura_reservorio_exce, q_captado, q_exce, H_exce, V_exce, longi_rejilla_2,
-            ho_he, iL, area_neta_2, v_barrotes_2, Xi_2, e_Xs_esos, j, d;
+            ho_he, iL, area_neta_2, v_barrotes_2, Xi_2, e_Xs_esos, j, d, B_ceil;
     int n_ori_int, d_int;
     /*CALCULO DE COTAS*/    
     double diseño, maxima, promedio, fondo_aguas_arriba, fondo_aguas_abajo, lamina_aguas_arriba, lamina_aguas_abajo, Cresta_vertedero_excesos, fondo, cota_entrada, 
@@ -660,7 +660,7 @@ public class Inicio extends javax.swing.JFrame {
             fondoRio = Double.parseDouble(fondoRio_s);
             
             /* profun lamina de agua */
-            h_diseño = Math.pow((qCaudal / 1.84 * laterales), (2.0/3.0));
+            h_diseño = Math.pow((qCaudal / (1.84 * laterales)), (2.0/3.0));
             System.out.println("H: " + h_diseño);
             
             /* correción contracciones */
@@ -676,7 +676,7 @@ public class Inicio extends javax.swing.JFrame {
                 Xs = 0.36 * Math.pow(v_rio,(2.0/3.0)) + 0.6 * Math.pow(h_diseño,(4.0/7.0));
                 Xi = 0.18 * Math.pow(v_rio,(4.0/7.0)) + 0.74 * Math.pow(h_diseño,(3.0/4.0));
                 B = Xs + 0.1;
-                double B_ceil = redondearDecimales(B, 1);
+                B_ceil = redondearDecimales(B, 1);
                 System.out.println("Xs: " + Xs);
                 System.out.println("Xi: " + Xi);
                 System.out.println("B: " + B_ceil);
@@ -764,7 +764,7 @@ public class Inicio extends javax.swing.JFrame {
                     /*CALCULO TUBERIA DE EXCESOS*/
                     j = (cota_entrada - cota_salida) / 50;
                     System.out.println("j:" + j);
-                    d = Math.pow((q_exce / (0.2785 * /*C*/100 * Math.pow(j, 0.54))),(1.0/2.63)); //que es C?? por ahora es 100
+                    d = Math.pow((q_exce / (0.2785 * 100 * Math.pow(j, 0.54))),(1.0/2.63));
                     d = d * 39.3701;
                     d_int = (int) Math.ceil(d);
                     System.out.println("d\":" + d_int);
@@ -963,6 +963,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbDepActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int n_deci = 2;
         if(txtQ.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Introduzca el valor del caudal de diseño.");
         }else if (txtSeparacion.getText().equals("")){
@@ -998,7 +999,7 @@ public class Inicio extends javax.swing.JFrame {
             try{
                 String ruta_user= System.getProperty("user.home");
                 PageSize pagesize = new PageSize( width, height );
-                String DesGuardado = ruta_user+"\\Desktop"+"\\"+cmbDep.getSelectedItem().toString()+".pdf";
+                String DesGuardado = ruta_user+"\\Desktop"+"\\"+cmbDep.getSelectedItem().toString()+"-"+cmbProvin.getSelectedItem().toString()+".pdf";
                 PdfWriter EscribirPDF = new PdfWriter(DesGuardado);
                 PdfDocument DocumentoPDF = new PdfDocument(EscribirPDF);          
                 Document documento = new Document(DocumentoPDF, pagesize);
@@ -1014,11 +1015,25 @@ public class Inicio extends javax.swing.JFrame {
                 
                 Paragraph titulo = new Paragraph();
                 titulo.add("Fórmulas").setUnderline();
+                
+                /*Redondear*/
+                h_diseño = redondearDecimales(h_diseño, n_deci);
+                v_rio = redondearDecimales(v_rio, n_deci);
+                area_neta = redondearDecimales(area_neta, n_deci);    
+                area_neta_2 = redondearDecimales(area_neta_2, 2);
+                v_barrotes_2 = redondearDecimales(v_barrotes_2, n_deci);
+                Xi_2 = redondearDecimales(Xi_2, n_deci);
+                h_muros = redondearDecimales(h_muros, n_deci);
+                q_captado = redondearDecimales(q_captado, n_deci);
+                q_exce = redondearDecimales(q_exce, n_deci);
+                e_Xs_esos = redondearDecimales(e_Xs_esos, n_deci);
+                
+                
                 List formulas_lista=new List().setSymbolIndent(12).setListSymbol("-");
                 formulas_lista.add(new ListItem("Lamina de agua en las condiciones de diseño: (Q / 1.84 * L) ^ (2/3) = "+ h_diseño ))
                         .add("Corrección por las contracciones laterales: L - 0.2 * Hdiseño = " + correc_laterales)
                         .add("Velocidad del río sobre la presa: Q/L' * Hdiseño = "+ v_rio)
-                        .add("Ancho del canal de aducción: Xs + 0.1 = " + B)
+                        .add("Ancho del canal de aducción: Xs + 0.1 = " + B_ceil)
                         .add("Área neta: Q / 0.9 * Vb = " + area_neta)
                         .add("Longitud rejilla: (An * (a + b)) / (a * B) = " + longi_rejilla)
                         .add("Recalcular área neta: (a / a+b) * B * Lr = " + area_neta_2)
@@ -1121,7 +1136,7 @@ public class Inicio extends javax.swing.JFrame {
                 
                 
                 documento.close();
-                JOptionPane.showMessageDialog(null, "Se ha generado en "+ ruta_user + "\\Desktop");
+                JOptionPane.showMessageDialog(null, "Se ha generado el PDF en "+ ruta_user + "\\Desktop");
             }catch(Exception e){
                 System.out.println("Error: ------>"+e);
             }
